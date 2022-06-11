@@ -1,2 +1,2 @@
 # high-pass
-landing page
+created landing page with use SCSS, Gulp, grid
