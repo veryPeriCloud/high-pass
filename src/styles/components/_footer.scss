@@ -1,0 +1,196 @@
+@import '../variables';
+@import '../mixins';
+
+.footer {
+  background-color: var(--color-dark);
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 24px;
+    padding-bottom: 16px;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__logo {
+    display: block;
+    transform: translateY(-6px);
+    transition: outline 0.3s ease-in-out;
+
+    &:focus {
+      outline: 2px solid var(--color-main);
+    }
+  }
+
+  &__left-text {
+    font-family: 'TT Firs Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #E9E9E9;
+  }
+
+  &__center {
+    width: 29%;
+    margin: 0;
+    margin-right: 110px;
+  }
+
+  &__quote {
+    margin: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--color-light);
+  }
+
+  &__autor {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #4A4A4A;
+  }
+
+  &__right-text {
+    margin: 0;
+    margin-bottom: 6px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--color-light);
+  }
+
+  &__social-list {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__social-item:not(:last-child) {
+    margin-right: 21px;
+  }
+
+  &__social-link {
+    display: block;
+    width: 30px;
+    height: 30px;
+
+    & svg {
+      width: 30px;
+      height: 30px;
+
+      & path {
+        fill: #CACACA;
+        transition: fill 0.3s ease-in-out;
+      }
+    }
+
+    &:hover path {
+      fill: var(--color-main);
+    }
+
+    &:active path {
+      fill: var(--color-active);
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &:focus-visible path {
+      fill: var(--color-focus);
+    }
+  }
+
+  @media (max-width: 1024.99px) {
+
+    &__container {
+      padding-top: 23px;
+    }
+
+    &__left {
+      margin-right: 64px;
+    }
+
+    &__logo {
+      transform: translateY(-2px);
+    }
+
+    &__center {
+      width: 37%;
+      margin-right: 0;
+    }
+
+    &__right-text {
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (max-width: 950.99px) {
+
+    &__left {
+      margin-right: 0;
+    }
+  }
+
+  @media (max-width: 768.99px) {
+
+    &__center {
+      display: none;
+    }
+
+    &__logo {
+      transform: translateY(0);
+      margin-bottom: 3px;
+    }
+  }
+
+  @media (max-width: 580.99px) {
+
+    &__container {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+
+    &__right {
+      margin-bottom: 30px;
+    }
+  }
+
+  @media (max-width: 320.99px) {
+
+    &__container {
+      padding-top: 30px;
+      padding-bottom: 0;
+    }
+
+    &__left {
+      width: calc(100% + 2 * var(--offset-mob));
+      height: 62px;
+      align-items: center;
+      margin-left: -21px;
+      margin-right: -21px;
+      background-color: #4A4A4A;
+    }
+
+    &__logo {
+      margin-bottom: 5px;
+      width: 112px;
+      height: 18px;
+    }
+
+    &__left-text {
+      font-size: 10px;
+      line-height: 13px;
+    }
+  }
+
+}

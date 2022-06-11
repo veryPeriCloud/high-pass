@@ -1,0 +1,202 @@
+@import '../variables';
+@import '../mixins';
+
+.about {
+  padding-top: 33px;
+  padding-bottom: 69px;
+  background-color: var(--color-dark);
+
+  &__title {
+    @include section-title;
+    margin-bottom: 5px;
+    color: var(--color-white);
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__text {
+    margin: 0;
+    width: calc(50% - var(--grid-gutter) / 2);
+    margin-right: var(--grid-gutter);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: var(--color-light);
+  }
+
+  &__right-content {
+    width: calc(50% - var(--grid-gutter) / 2);
+  }
+
+  &__img {
+    width: 100%;
+    min-height: 255px;
+    margin-bottom: 25px;
+    background: url('./img/about.jpg') center center no-repeat;
+    background-size: cover;
+  }
+
+  &__form-title {
+    margin: 0;
+    margin-bottom: 16px;
+    font-family: 'TT Firs Neue';
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 22px;
+    color: var(--color-white);
+  }
+
+  &__form {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  &__form-input {
+    width: 75%;
+    height: 50px;
+    padding: 15px 23px;
+    margin-right: 20px;
+    border: none;
+    background-color: #4A4A4A;
+    transition: outline 0.3s ease-in-out;
+
+    &::placeholder {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+      color: var(--color-light);
+      transition: color 0.3s ease-in-out;
+    }
+
+    &:hover {
+      &::placeholder {
+        color: var(--color-main);
+      }
+    }
+
+    &:focus-visible {
+      outline: 1px solid var(--color-main);
+    }
+  }
+
+  &__form-button {
+    display: block;
+    padding: 13px 19px;
+    border: 3px solid var(--color-main);
+  }
+
+  .just-validate-error-label {
+    position: absolute;
+    left: 23px;
+    font-weight: 400;
+    font-size: 9px;
+    line-height: 11px;
+    color: var(--color-error);
+  }
+
+
+  @media (max-width: 1300px) {
+    &__form {
+      flex-direction: column;
+    }
+
+    &__form-input {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+
+    &__form-button {
+      margin-right: auto;
+    }
+  }
+
+  @media (max-width: 1024.99px) {
+    & {
+      padding-bottom: 61px;
+
+      &__title {
+        margin-bottom: 7px;
+      }
+
+      &__img {
+        min-height: 332px;
+        margin-bottom: 21px;
+        background: url('./img/about1024.jpg') center center no-repeat;
+      }
+    }
+  }
+
+  @media (max-width: 768.99px) {
+    & {
+      padding-bottom: 64px;
+
+      &__img {
+        margin-bottom: 24px;
+        height: 75%;
+        background-size: cover;
+      }
+    }
+  }
+
+  @media (max-width: 580.99px) {
+    &__content {
+      flex-direction: column;
+    }
+
+    &__text {
+      width: 100%;
+      margin-bottom: 22px;
+      margin-right: 0;
+    }
+
+    &__right-content {
+      width: 100%;
+    }
+
+    &__form-input {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 320.99px) {
+    & {
+      padding-bottom: 60px;
+    }
+
+    &__title {
+      margin-bottom: 4px;
+    }
+
+    &__text {
+      font-size: 14px;
+      line-height: 25px
+    }
+
+    &__img {
+      min-height: 278px;
+      margin-bottom: 26px;
+    }
+
+    &__form-title {
+      margin-bottom: 14px;
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+    &__form-input {
+      height: 40px;
+
+      &::placeholder {
+        font-size: 14px;
+        line-height: 16px;
+      }
+    }
+
+    &__form-button {
+      padding: 9px 19px;
+    }
+  }
+}

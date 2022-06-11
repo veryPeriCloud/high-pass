@@ -1,0 +1,433 @@
+@import '../variables';
+@import '../mixins';
+
+.contacts {
+  padding-bottom: 68px;
+
+  &__container {
+    overflow: hidden;
+  }
+
+  &__title {
+    @include section-title;
+    margin-bottom: 25px;
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__map {
+    position: relative;
+    width: calc(850 * 100% / 1290);
+    height: 460px;
+    margin-right: var(--grid-gutter);
+    overflow: hidden;
+
+    [class*="ground-pane"] {
+      filter: grayscale(1);
+    }
+
+    .ymaps-2-1-79-copyright,
+    .ymaps-2-1-79-map-copyrights-promo {
+      display: none;
+    }
+  }
+
+  &__descr {
+    z-index: 3000;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    max-width: 410px;
+    height: 100%;
+    padding-top: 20.5%;
+    padding-left: 60px;
+    padding-right: 50px;
+    background-color: rgba(32, 32, 32, 0.85);
+    transform: translateX(-150%);
+    transition: transform 0.5s ease-in-out;
+
+    &--active {
+      transform: translateX(0);
+    }
+  }
+
+  &__btn-close {
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    top: 19px;
+    right: 20px;
+    transition: fill 0.3s ease-in-out;
+
+    & svg {
+      fill: #666666;
+      transition: fill 0.3s ease-in-out;
+    }
+
+    &:hover svg circle {
+      fill: var(--color-main);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus svg circle {
+      fill: var(--color-focus);
+    }
+
+    &:active svg circle {
+      fill: var(--color-active);
+    }
+  }
+
+  &__address-title {
+    margin: 0;
+    margin-bottom: 5px;
+    font-family: 'TT Firs Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 22px;
+    color: var(--color-white);
+  }
+
+  &__address {
+    margin-bottom: 2px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: var(--color-light);
+  }
+
+  &__phone {
+    position: relative;
+    padding-left: 22px;
+    font-family: 'TT Firs Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    color: var(--color-white);
+    transition: color 0.3s ease-in-out;
+
+    &::before {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      width: 22px;
+      height: 22px;
+      background: url('../../img/phone.svg') center center no-repeat;
+      opacity: 0.7;
+    }
+
+    &:hover {
+      color: var(--color-main);
+    }
+
+    &:focus {
+      color: var(--color-focus);
+    }
+
+    &:active {
+      color: var(--color-active);
+    }
+  }
+
+  &__form {
+    width: 32%;
+    width: calc(410 * 100% / 1290);
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__form-title {
+    margin: 0;
+    transform: translateY(-6px);
+    font-family: 'TT Firs Neue';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 20px;
+  }
+
+  &__form-descr {
+    margin: 0;
+    margin-bottom: 14px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #999999;
+  }
+
+  &__input-wrapper {
+    position: relative;
+  }
+
+  .just-validate-error-label {
+    position: absolute;
+    top: 5px;
+    left: 23px;
+    font-weight: 400;
+    font-size: 9px;
+    line-height: 11px;
+    color: var(--color-error);
+  }
+
+  &__input {
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+    padding: 15px 23px;
+    width: 100%;
+    height: 50px;
+    border: none;
+    background-color: #E9E9E9;
+    transition: outline 0.3s ease-in-out;
+
+    &::placeholder {
+      font-size: 16px;
+      line-height: 19px;
+      color: #999999;
+      transition: color 0.3s ease-in-out;
+    }
+
+    &:hover {
+      &::placeholder {
+        color: var(--color-main);
+      }
+    }
+
+    &:focus {
+      outline: none;
+      outline: 1px solid var(--color-main);
+    }
+  }
+
+  &__textarea {
+    margin-bottom: 20px;
+    padding: 15px 23px;
+    width: 100%;
+    min-height: 150px;
+    border: none;
+    background-color: #E9E9E9;
+    transition: outline 0.3s ease-in-out;
+
+    &::placeholder {
+      font-size: 16px;
+      line-height: 19px;
+      color: #999999;
+      transition: color 0.3s ease-in-out;
+    }
+
+    &:hover {
+      &::placeholder {
+        color: var(--color-main);
+      }
+    }
+
+    &:focus {
+      outline: none;
+      outline: 1px solid var(--color-main);
+    }
+  }
+
+  &__form-btn {
+    margin-right: auto;
+    padding: 12px 19px;
+  }
+
+  @media (max-width: 1024.99px) {
+
+    &__map {
+      width: calc(628 * 100% / 1024);
+    }
+
+    &__descr {
+      padding-top: 25px;
+      padding-left: 30px;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      max-width: 100%;
+      height: calc(157 * 100% / 460);
+      transform: translateY(150%);
+
+      &--active {
+        transform: translateY(0);
+      }
+    }
+
+    &__address {
+      width: 58%;
+    }
+
+    &__phone {
+      position: absolute;
+      left: 121px;
+      bottom: 25px;
+    }
+
+    &__form {
+      width: calc(362 * 100% / 1024);
+    }
+
+    &__form-descr {
+      margin-bottom: 14px;
+    }
+  }
+
+  @media (max-width: 1020px) {
+    &__address {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768.99px) {
+
+    &__content {
+      flex-direction: column;
+    }
+
+    &__map {
+      margin-right: 0;
+      margin-bottom: 30px;
+      width: 100%;
+      height: 460px;
+    }
+
+    &__address {
+      width: 71.5%;
+    }
+
+    &__phone {
+      left: 30px;
+    }
+
+    &__form {
+      width: 65%;
+    }
+
+    &__form-btn {
+      padding: 13px 19px;
+    }
+  }
+
+  @media (max-width: 768.99px) {
+
+    &__address {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 580.99px) {
+    &__form {
+      width: 80%;
+    }
+
+    &__descr {
+      padding: 26px 30px 0 19px;
+    }
+
+    &__address-title {
+      margin-bottom: 11px;
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+    &__address {
+      width: 100%;
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    &__phone {
+      left: 15px;
+      bottom: 18px;
+    }
+  }
+
+  @media (max-width: 320.99px) {
+    & {
+      padding-bottom: 50px;
+    }
+
+    &__title {
+      margin-bottom: 13px;
+    }
+
+    &__map {
+      width: calc(100% + 2 * var(--offset-mob));
+      margin-left: -21px;
+      margin-right: -21px;
+      margin-bottom: 28px;
+      height: 472px;
+    }
+
+    &__descr {
+      height: 157px;
+    }
+
+    &__phone {
+      padding-left: 17px;
+      bottom: 14px;
+      left: 21px;
+      font-size: 14px;
+      line-height: 18px;
+      color: var(--color-main);
+
+
+      &::before {
+        width: 15px;
+        height: 15px;
+        background: url('./img/phone_orange.svg') center center no-repeat;
+        opacity: 1;
+      }
+    }
+
+    &__form {
+      width: 100%;
+    }
+
+    &__form-title {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22px;
+      margin-bottom: 2px;
+    }
+
+    &__form-descr {
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    &__input {
+      height: 40px;
+
+      &::placeholder {
+        font-size: 14px;
+        line-height: 16px;
+      }
+    }
+
+    &__textarea {
+      padding-top: 13px;
+
+      &::placeholder {
+        font-size: 14px;
+        line-height: 16px;
+      }
+    }
+
+    &__form-btn {
+      padding: 9px 19px;
+    }
+  }
+}

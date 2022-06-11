@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>High pass</title>
+  <link rel="icon" href="./img/favicon.png" type="image/png">
+  <link rel="stylesheet" href="./normalize.css">
+  <link rel="stylesheet" href="./main.css">
+
+  <script defer src="https://api-maps.yandex.ru/2.1?apikey=ваш API-ключ&lang=ru_RU" type="text/javascript"></script>
+  <script defer src="./js/just-validate.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__container">
+      <a href="#" class="header__logo">
+        <picture>
+          <source media="(max-width: 320px)" srcset="./img/Logo320.png">
+          <source media="(max-width: 768px)" srcset="./img/Logo768.png">
+          <source media="(max-width: 1024px)" srcset="img/Logo1024.png">
+          <img src="./img/Logo.png" alt="Логотип High pass">
+        </picture>
+      </a>
+      <nav class="header__nav">
+        <ul class="header__nav-list list-reset">
+          <li class="header__nav-item">
+            <a href="#about" class="header__nav-link">О студии</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="#projects" class="header__nav-link">Наши проекты</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="#" class="header__nav-link">Услуги</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="#" class="header__nav-link">Мастер-классы</a>
+          </li>
+          <li class="header__nav-item">
+            <a href="#contacts" class="header__nav-link">Контакты</a>
+          </li>
+        </ul>
+      </nav>
+      <ul class="header__social-list">
+        <li class="header__social-item">
+          <a href="#" class="header__social-link">
+            <svg width="30" height="30" viewbox="0 0 30 30" fill="" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12.1289 15.0001C12.1289 16.5858 13.4143 17.8712 15 17.8712C16.5857 17.8712 17.8711 16.5858 17.8711 15.0001C17.8711 13.4144 16.5857 12.129 15 12.129C13.4143 12.129 12.1289 13.4144 12.1289 15.0001Z"
+                fill="" />
+              <path
+                d="M8.28558 9.92003C8.4236 9.54604 8.64378 9.20752 8.92989 8.92966C9.20775 8.64355 9.54604 8.42337 9.92026 8.28535C10.2238 8.16748 10.6797 8.02718 11.5195 7.98895C12.4279 7.94753 12.7003 7.9386 15.0001 7.9386C17.3001 7.9386 17.5725 7.9473 18.4807 7.98872C19.3204 8.02718 19.7766 8.16748 20.0799 8.28535C20.4541 8.42337 20.7926 8.64355 21.0702 8.92966C21.3563 9.20752 21.5765 9.54581 21.7148 9.92003C21.8326 10.2235 21.9729 10.6797 22.0112 11.5195C22.0526 12.4277 22.0615 12.7 22.0615 15.0001C22.0615 17.2999 22.0526 17.5722 22.0112 18.4807C21.9729 19.3204 21.8326 19.7764 21.7148 20.0799C21.5765 20.4541 21.3566 20.7924 21.0705 21.0702C20.7926 21.3563 20.4543 21.5765 20.0801 21.7145C19.7766 21.8326 19.3204 21.9729 18.4807 22.0112C17.5725 22.0526 17.3003 22.0613 15.0003 22.0613C12.7 22.0613 12.4277 22.0526 11.5197 22.0112C10.6799 21.9729 10.2238 21.8326 9.92026 21.7145C9.16907 21.4248 8.57535 20.8311 8.28558 20.0799C8.16771 19.7764 8.0274 19.3204 7.98895 18.4807C7.94753 17.5722 7.93883 17.2999 7.93883 15.0001C7.93883 12.7 7.94753 12.4277 7.98895 11.5195C8.02718 10.6797 8.16748 10.2235 8.28558 9.92003ZM15.0001 19.4227C17.4429 19.4227 19.4232 17.4427 19.4232 14.9998C19.4232 12.557 17.4429 10.5769 15.0001 10.5769C12.5574 10.5769 10.5771 12.557 10.5771 14.9998C10.5771 17.4427 12.5574 19.4227 15.0001 19.4227ZM10.4023 11.4357C10.9731 11.4357 11.4359 10.9729 11.4359 10.4021C11.4359 9.83122 10.9731 9.36842 10.4023 9.36842C9.83145 9.36842 9.36865 9.83122 9.36865 10.4021C9.36888 10.9729 9.83145 11.4357 10.4023 11.4357Z"
+                fill="" />
+              <path
+                d="M15 0C23.283 0 30 6.717 30 15C30 23.283 23.283 30 15 30C6.717 30 0 23.283 0 15C0 6.717 6.717 0 15 0ZM6.43867 18.5511C6.48033 19.468 6.62613 20.094 6.83899 20.6419C7.28645 21.7989 8.20107 22.7135 9.35806 23.161C9.90578 23.3739 10.532 23.5194 11.4487 23.5613C12.3672 23.6032 12.6606 23.6133 14.9998 23.6133C17.3392 23.6133 17.6324 23.6032 18.5511 23.5613C19.4678 23.5194 20.094 23.3739 20.6417 23.161C21.2167 22.9447 21.7371 22.6057 22.1674 22.1674C22.6055 21.7374 22.9445 21.2167 23.1608 20.6419C23.3736 20.0942 23.5194 19.468 23.5611 18.5513C23.6034 17.6326 23.6133 17.3392 23.6133 15C23.6133 12.6608 23.6034 12.3674 23.5613 11.4489C23.5197 10.532 23.3741 9.90601 23.1612 9.35806C22.9449 8.78334 22.6057 8.26263 22.1674 7.83257C21.7374 7.39426 21.2167 7.05528 20.6419 6.83899C20.094 6.62613 19.468 6.48056 18.5511 6.43867C17.6326 6.39679 17.3392 6.38672 15 6.38672C12.6608 6.38672 12.3674 6.39679 11.4489 6.4389C10.532 6.48056 9.90601 6.62613 9.35806 6.83876C8.78334 7.05505 8.26263 7.39426 7.83234 7.83257C7.39426 8.26286 7.05505 8.78334 6.83899 9.35806C6.6259 9.90601 6.48033 10.532 6.43845 11.4489C6.39656 12.3674 6.38672 12.6608 6.38672 15C6.38672 17.3392 6.39656 17.6326 6.43867 18.5511Z"
+                fill="" />
+            </svg>
+          </a>
+        </li>
+        <li class="header__social-item">
+          <a href="#" class="header__social-link">
+            <svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15 0C6.74999 0 0 6.76205 0 15.0904C0 22.6205 5.48999 28.8705 12.66 30V19.4578H8.84999V15.0904H12.66V11.762C12.66 7.98193 14.895 5.90361 18.33 5.90361C19.965 5.90361 21.675 6.18976 21.675 6.18976V9.90964H19.785C17.925 9.90964 17.34 11.0693 17.34 12.259V15.0904H21.51L20.835 19.4578H17.34V30C20.8746 29.4395 24.0933 27.6288 26.4149 24.8947C28.7364 22.1606 30.008 18.6832 30 15.0904C30 6.76205 23.25 0 15 0Z"
+                fill="" />
+            </svg>
+          </a>
+        </li>
+        <li class="header__social-item">
+          <a href="#" class="header__social-link">
+            <svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15 0C6.71601 0 0 6.7157 0 15C0 23.2843 6.71601 30 15 30C23.284 30 30 23.2843 30 15C30 6.7157 23.284 0 15 0ZM22.6088 16.6223C23.3079 17.3052 24.0476 17.9478 24.6752 18.7013C24.9532 19.0346 25.2153 19.3792 25.4148 19.7669C25.6996 20.3196 25.4425 20.9257 24.9477 20.9586L21.8747 20.958C21.081 21.0236 20.4494 20.7035 19.9169 20.1609C19.4919 19.7285 19.0975 19.2666 18.6881 18.8194C18.5208 18.6359 18.3447 18.4631 18.1347 18.3272C17.7158 18.0546 17.3518 18.1381 17.1118 18.5758C16.8672 19.0211 16.8114 19.5146 16.788 20.0102C16.7546 20.7348 16.5361 20.9242 15.809 20.9583C14.2554 21.031 12.7814 20.7953 11.4114 20.0121C10.2028 19.3212 9.26731 18.3462 8.45217 17.2423C6.86486 15.0902 5.64921 12.7283 4.55693 10.2985C4.3111 9.7513 4.49095 9.45852 5.09463 9.44716C6.0976 9.42783 7.10056 9.43028 8.10353 9.44624C8.51171 9.45268 8.78179 9.68624 8.93862 10.0714C9.48061 11.4049 10.1451 12.6737 10.9777 13.8503C11.1996 14.1637 11.4261 14.4761 11.7486 14.6974C12.1047 14.9417 12.376 14.861 12.5438 14.4635C12.6513 14.2109 12.6976 13.9409 12.7209 13.6702C12.8007 12.743 12.8102 11.8162 12.6721 10.8927C12.5862 10.3148 12.2612 9.94158 11.6851 9.83233C11.3917 9.77678 11.4347 9.66813 11.5774 9.50056C11.8251 9.21084 12.0571 9.03161 12.5208 9.03161L15.9928 9.031C16.5401 9.13841 16.6628 9.38394 16.7371 9.93514L16.7402 13.7936C16.7337 14.0069 16.8473 14.6391 17.2303 14.7787C17.5372 14.88 17.7397 14.6339 17.9233 14.4396C18.7559 13.556 19.3492 12.5131 19.8804 11.4338C20.1149 10.9577 20.3171 10.4652 20.5136 9.97166C20.6596 9.60675 20.8868 9.42721 21.2986 9.43335L24.642 9.43734C24.7406 9.43734 24.8406 9.43826 24.9382 9.45514C25.5017 9.55151 25.6561 9.79396 25.4817 10.3436C25.2074 11.2073 24.6743 11.9266 24.1531 12.6479C23.5946 13.4201 22.9989 14.1652 22.4458 14.9408C21.9376 15.6497 21.9778 16.0066 22.6088 16.6223Z"
+                fill="" />
+            </svg>
+          </a>
+        </li>
+      </ul>
+      <div class="header__search-container">
+        <button class="header__search-btn btn-reset">
+          <svg width="25" height="25" viewbox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M24.9113 22.8136L19.8536 18.3573C21.341 16.3763 22.1457 13.9543 22.1457 11.4068C22.1457 8.35737 20.9904 5.49807 18.9013 3.34219C16.8123 1.18631 14.0293 0 11.0728 0C8.11639 0 5.33342 1.19011 3.24434 3.34219C1.15157 5.49427 0 8.35737 0 11.4068C0 14.4524 1.15527 17.3193 3.24434 19.4714C5.33342 21.6273 8.1127 22.8136 11.0728 22.8136C13.5458 22.8136 15.8932 21.9847 17.8162 20.4562L22.8739 24.9086C22.902 24.9376 22.9354 24.9606 22.9721 24.9762C23.0088 24.9919 23.0482 25 23.088 25C23.1277 25 23.1671 24.9919 23.2038 24.9762C23.2406 24.9606 23.2739 24.9376 23.302 24.9086L24.9113 23.2546C24.9394 23.2257 24.9617 23.1913 24.9769 23.1535C24.9922 23.1156 25 23.0751 25 23.0341C25 22.9931 24.9922 22.9526 24.9769 22.9147C24.9617 22.8769 24.9394 22.8425 24.9113 22.8136ZM16.9193 17.4296C15.3543 19.0379 13.28 19.9238 11.0728 19.9238C8.86565 19.9238 6.79134 19.0379 5.22638 17.4296C3.66511 15.8174 2.80512 13.6805 2.80512 11.4068C2.80512 9.13303 3.66511 6.99236 5.22638 5.384C6.79134 3.77565 8.86565 2.88972 11.0728 2.88972C13.28 2.88972 15.358 3.77184 16.9193 5.384C18.4806 6.99616 19.3406 9.13303 19.3406 11.4068C19.3406 13.6805 18.4806 15.8212 16.9193 17.4296Z"
+              fill="#BCBCBC" />
+          </svg>
+        </button>
+        <form action="#" class="header__form">
+          <input type="text" class="header__search-input" placeholder="Что будем искать?">
+          <button class="header__btn-close btn-reset">
+            <svg width="23" height="23" viewbox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11.5" cy="11.5" r="11.5" fill="#FF6E30"/>
+              <rect x="7.13818" y="6.32501" width="13.8" height="1.15" transform="rotate(45 7.13818 6.32501)" fill="white"/>
+              <rect x="6.42993" y="16.0832" width="13.8" height="1.15" transform="rotate(-45 6.42993 16.0832)" fill="white"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <button class="burger btn-reset for-mobile">
+        <span></span>
+      </button>
+      <a href="tel:+749542423532" class="header__phone">
+        +7 (495) 42-423-532
+      </a>
+    </div>
+  </header>
+  <main class="main">
+    <section class="hero">
+      <div class="container hero__container">
+        <h1 class="visually-hidden">Фотостудия High pass</h1>
+        <article class="article">
+          <div class="article__content">
+            <h3 class="article__title">
+              Мастер-класс от&nbsp;Игоря Робова
+            </h3>
+            <p class="article__descr">
+              Неоновый фотосет 2.0 7&nbsp;июля 20:00
+            </p>
+            <button class="btn-reset btn article__btn">Узнать больше</button>
+          </div>
+        </article>
+
+        <div class="hero__right-content">
+          <h2 class="hero__title">
+            Работы участников предыдущего мастер-класса
+          </h2>
+          <ul class="hero__list list-reset">
+            <li class="hero__item">
+              <picture>
+                <source media="(max-width: 320.99px)" srcset="./img/hero2_320.jpg">
+                <source media="(max-width: 580.99px)" srcset="./img/hero2_1024.jpg">
+                <source media="(max-width: 768.99px)" srcset="./img/hero2_768.jpg">
+                <source media="(max-width: 1024.99px)" srcset="./img/hero2_1024.jpg">
+                <img src="./img/hero2.jpg" class="hero__img" alt="фотография девушки">
+              </picture>
+            </li>
+            <li class="hero__item">
+              <picture>
+                <source media="(max-width:1024.99px)" srcset="./img/hero3_1024.jpg">
+                <img src="./img/hero3.jpg" class="hero__img" alt="фотография девушки">
+              </picture>
+            </li>
+            <li class="hero__item">
+              <picture>
+                <source media="(max-width:1024.99px)" srcset="./img/hero4_1024.jpg">
+                <img src="./img/hero4.jpg" class="hero__img" alt="фотография девушки">
+              </picture>
+            </li>
+          </ul>
+        </div>
+
+
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about__container">
+        <h2 class="about__title">О&nbsp;студии</h2>
+        <div class="about__content">
+          <p class="about__text">
+            В&nbsp;рамках спецификации современных стандартов, интерактивные прототипы, инициированные исключительно
+            синтетически, ограничены исключительно образом мышления. Предварительные выводы неутешительны:
+            высокотехнологичная концепция общественного уклада требует от&nbsp;нас анализа соответствующих условий
+            активизации! Следует отметить, что семантический разбор внешних противодействий  фиксирует необходимость
+            распределения внутренних резервов и ресурсов. Безусловно, граница обучения кадров предоставляет широкие
+            возможности для первоочередных требований. Повседневная практика показывает, что глубокий уровень погружения
+            предполагает независимые способы реализации новых принципов формирования материально&#8209;технической
+            и&nbsp;кадровой базы. Приятно, граждане, наблюдать, как явные признаки институционализации являются только
+            методом политического участия и нарушающими общечеловеческие нормы этики.
+          </p>
+          <div class="about__right-content">
+            <div class="about__img"></div>
+            <h3 class="about__form-title">Подписаться на рассылку</h3>
+            <form action="#" class="about__form" method="POST">
+              <input class="about__form-input" type="email" placeholder="E-mail">
+              <button class="about__form-button btn btn-reset" type="submit">
+                Отправить
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="container prijects__container">
+        <h2 class="projects__title">
+          Наши проекты
+        </h2>
+        <ul class="projects__list">
+          <li class="projects__item">
+            <div class="projects__card projects__card-1">
+              <picture>
+                <source media="(max-width: 320.99px)" srcset="./img/projectlandscape320.jpg">
+                <source media="(max-width: 1024.99px)" srcset="./img/projectlandscape1024.jpg">
+                <img class="projects__img" src="./img/projectlandscape.jpg" alt="Пейзаж с изображением гор, леса, реки">
+              </picture>
+              <div class="projects__card-content">
+                <p class="projects__descr">
+                  Синтетически, смешаны с&nbsp;не уникальными данными&nbsp;до степени...
+                </p>
+                <div class="projects__time">
+                  16 июня
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="projects__item">
+            <div class="projects__card projects__card-2">
+              <picture>
+                <source media="(max-width:1024.99px)" srcset="./img/projectportrait1_1024.jpg">
+                <img class="projects__img" src="./img/projectportrait1.jpg" alt="Портрет молодого кудрявого человека в профиль">
+              </picture>
+              <div class="projects__card-content">
+                <p class="projects__descr">
+                  В&nbsp;своём стремлении улучшить опыт мы упускаем, что явные...
+                </p>
+                <div class="projects__time">
+                  28 мая
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="projects__item">
+            <div class="projects__card projects__card-3">
+              <picture>
+                <source media="(max-width: 320.99px)" srcset="./img/projectsubject320.jpg">
+                <source media="(max-width: 580.99px)" srcset="./img/projectsubject1024.jpg">
+                <source media="(max-width: 768.99px)" srcset="./img/projectsubject768.jpg">
+                <source media="(max-width: 1024.99px)" srcset="./img/projectsubject1024.jpg">
+                <img class="projects__img" src="./img/projectsubject.jpg" alt="Предметная фотография с изображением вазы, чайника, кашпо">
+              </picture>
+              <div class="projects__card-content">
+                <p class="projects__descr projects__descr-3">
+                  Равным образом, высокое качество позиционных высокотехнологичная концепция общественного уклада
+                </p>
+                <div class="projects__time">
+                  14 мая
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="projects__item">
+            <div class="projects__bigcard1">
+              <div class="projects__bigcard-content">
+                <div class="projects__time projects__time--big">
+                  9 апреля
+                </div>
+                <h3 class="projects__subtitle">Семантический разбор</h3>
+                <p class="projects__descr-big">
+                  В&nbsp;рамках спецификации современных стандартов, интерактивные прототипы
+                </p>
+              </div>
+              <button class="projects__btn btn-reset">
+                О&nbsp;проекте
+              </button>
+            </div>
+          </li>
+          <li class="projects__item">
+            <div class="projects__bigcard2">
+              <div class="projects__bigcard-content projects__bigcard-content-2">
+                <div class="projects__time projects__time--big">
+                  20 марта
+                </div>
+                <h3 class="projects__subtitle">Забвение</h3>
+                <p class="projects__descr-big">
+                  Играет важную роль в&nbsp;формировании глубокомысленных рассуждений
+                </p>
+              </div>
+              <button class="projects__btn btn-reset">
+                О&nbsp;проекте
+              </button>
+            </div>
+          </li>
+          <li class="projects__item">
+            <div class="projects__card-medium projects__card-medium1">
+              <picture>
+                <source media="(max-width:320.99px)" srcset="./img/projectretouch320.jpg">
+                <source media="(max-width:1024.99px)" srcset="./img/projectretouch_1024.jpg">
+                <img class="projects__img" src="./img/projectretouch.jpg" alt="фотография апельсинов на доске">
+              </picture>
+              <div class="projects__card-content">
+                <p class="projects__descr-medium">
+                  Как принято считать, многие известные личности и&nbsp;по&nbsp;сей день остаются уделом либералов...
+                </p>
+                <div class="projects__time">
+                  9 марта
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="projects__item">
+            <div class="projects__card-medium projects__card-medium2">
+              <picture>
+                <source media="(max-width:320.99px)" srcset="./img/projectportrait2_320.jpg">
+                <source media="(max-width:1024.99px)" srcset="./img/projectportrait2_1024.jpg">
+                <img class="projects__img" src="./img/projectportrait2.jpg" alt="черно-белый портрет девушки">
+              </picture>
+              <div class="projects__card-content">
+                <p class="projects__descr-medium">
+                  С&nbsp;учётом сложившейся международной обстановки, новая модель организационной
+                </p>
+                <div class="projects__time">
+                  1 марта
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="contacts" id="contacts">
+      <div class="container contacts__container">
+        <h2 class="contacts__title">Контакты</h2>
+        <div class="contacts__content">
+          <div class="contacts__map" id="map">
+            <div class="contacts__descr">
+              <button class="contacts__btn-close btn-reset">
+                <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="10" fill="" />
+                  <rect x="6.20712" y="5.5" width="12" height="1" transform="rotate(45 6.20712 5.5)" fill="white" />
+                  <rect x="5.5914" y="13.9854" width="12" height="1" transform="rotate(-45 5.5914 13.9854)"
+                    fill="white" />
+                </svg>
+              </button>
+              <h3 class="contacts__address-title">Студия &ldquo;High pass&rdquo;</h3>
+              <address class="contacts__address">
+                107045, Москва, Даев переулок, дом 41, бизнес-центр &laquo;Даев Плаза&raquo;, этаж&nbsp;8, офис
+                &#8470;&nbsp;82
+              </address>
+              <a href="tel:+749542423532" class="contacts__phone">
+                +7 (495) 42-423-532
+              </a>
+            </div>
+          </div>
+
+          <form action="#" method="POST" class="contacts__form" autocomplete="off">
+            <h3 class="contacts__form-title">Оставить заявку</h3>
+            <p class="contacts__form-descr">
+              Оставьте ваши данные, указав в&nbsp;графе &ldquo;Комментарий&rdquo; желаемые время и&nbsp;дату съемки или
+              другого мероприятия
+            </p>
+            <div class="contacts__input-wrapper">
+              <input type="text" class="contacts__input contacts__input-name" placeholder="Имя" id="name" name="name" autocomplete="off">
+            </div>
+            <div class="contacts__input-wrapper">
+              <input type="email" class="contacts__input contacts__input-mail" placeholder="E-mail" id="email" name="email" autocomplete="off">
+            </div>
+            <textarea name="textarea" class="contacts__textarea" placeholder="Комментарий"></textarea>
+            <button type="submit" class="contacts__form-btn btn btn-reset">Отправить</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__container">
+      <div class="footer__left">
+        <a href="#" class="footer__logo">
+          <picture>
+            <source media="(max-width: 320px)" srcset="./img/Logo320.png">
+            <source media="(max-width: 768px)" srcset="./img/Logo768.png">
+            <source media="(max-width: 1024px)" srcset="./img/Logo1024.png">
+            <img src="./img/Logo.png" alt="Логотип High pass">
+          </picture>
+        </a>
+        <span class="footer__left-text">
+          Фотостудия High pass<sup class="reg">&reg;</sup> 2018-2020
+        </span>
+      </div>
+
+      <blockquote class="footer__center">
+        <p class="footer__quote">
+          Которая из&nbsp;моих фотографий самая любимая? Та, которую я&nbsp;собираюсь снять завтра.
+        </p>
+        <cite class="footer__autor">&copy;&nbsp;Имоджен Каннингем</cite>
+      </blockquote>
+
+      <div class="footer__right">
+        <p class="footer__right-text">
+          Больше интересного:
+        </p>
+        <ul class="footer__social-list">
+          <li class="footer__social-item">
+            <a href="#" class="social__link footer__social-link">
+              <svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.1289 15.0001C12.1289 16.5858 13.4143 17.8712 15 17.8712C16.5857 17.8712 17.8711 16.5858 17.8711 15.0001C17.8711 13.4144 16.5857 12.129 15 12.129C13.4143 12.129 12.1289 13.4144 12.1289 15.0001Z"
+                  fill="#CACACA" />
+                <path
+                  d="M8.28558 9.92003C8.4236 9.54604 8.64378 9.20752 8.92989 8.92966C9.20775 8.64355 9.54604 8.42337 9.92026 8.28535C10.2238 8.16748 10.6797 8.02718 11.5195 7.98895C12.4279 7.94753 12.7003 7.9386 15.0001 7.9386C17.3001 7.9386 17.5725 7.9473 18.4807 7.98872C19.3204 8.02718 19.7766 8.16748 20.0799 8.28535C20.4541 8.42337 20.7926 8.64355 21.0702 8.92966C21.3563 9.20752 21.5765 9.54581 21.7148 9.92003C21.8326 10.2235 21.9729 10.6797 22.0112 11.5195C22.0526 12.4277 22.0615 12.7 22.0615 15.0001C22.0615 17.2999 22.0526 17.5722 22.0112 18.4807C21.9729 19.3204 21.8326 19.7764 21.7148 20.0799C21.5765 20.4541 21.3566 20.7924 21.0705 21.0702C20.7926 21.3563 20.4543 21.5765 20.0801 21.7145C19.7766 21.8326 19.3204 21.9729 18.4807 22.0112C17.5725 22.0526 17.3003 22.0613 15.0003 22.0613C12.7 22.0613 12.4277 22.0526 11.5197 22.0112C10.6799 21.9729 10.2238 21.8326 9.92026 21.7145C9.16907 21.4248 8.57535 20.8311 8.28558 20.0799C8.16771 19.7764 8.0274 19.3204 7.98895 18.4807C7.94753 17.5722 7.93883 17.2999 7.93883 15.0001C7.93883 12.7 7.94753 12.4277 7.98895 11.5195C8.02718 10.6797 8.16748 10.2235 8.28558 9.92003ZM15.0001 19.4227C17.4429 19.4227 19.4232 17.4427 19.4232 14.9998C19.4232 12.557 17.4429 10.5769 15.0001 10.5769C12.5574 10.5769 10.5771 12.557 10.5771 14.9998C10.5771 17.4427 12.5574 19.4227 15.0001 19.4227ZM10.4023 11.4357C10.9731 11.4357 11.4359 10.9729 11.4359 10.4021C11.4359 9.83122 10.9731 9.36842 10.4023 9.36842C9.83145 9.36842 9.36865 9.83122 9.36865 10.4021C9.36888 10.9729 9.83145 11.4357 10.4023 11.4357Z"
+                  fill="#CACACA" />
+                <path
+                  d="M15 0C23.283 0 30 6.717 30 15C30 23.283 23.283 30 15 30C6.717 30 0 23.283 0 15C0 6.717 6.717 0 15 0ZM6.43867 18.5511C6.48033 19.468 6.62613 20.094 6.83899 20.6419C7.28645 21.7989 8.20107 22.7135 9.35806 23.161C9.90578 23.3739 10.532 23.5194 11.4487 23.5613C12.3672 23.6032 12.6606 23.6133 14.9998 23.6133C17.3392 23.6133 17.6324 23.6032 18.5511 23.5613C19.4678 23.5194 20.094 23.3739 20.6417 23.161C21.2167 22.9447 21.7371 22.6057 22.1674 22.1674C22.6055 21.7374 22.9445 21.2167 23.1608 20.6419C23.3736 20.0942 23.5194 19.468 23.5611 18.5513C23.6034 17.6326 23.6133 17.3392 23.6133 15C23.6133 12.6608 23.6034 12.3674 23.5613 11.4489C23.5197 10.532 23.3741 9.90601 23.1612 9.35806C22.9449 8.78334 22.6057 8.26263 22.1674 7.83257C21.7374 7.39426 21.2167 7.05528 20.6419 6.83899C20.094 6.62613 19.468 6.48056 18.5511 6.43867C17.6326 6.39679 17.3392 6.38672 15 6.38672C12.6608 6.38672 12.3674 6.39679 11.4489 6.4389C10.532 6.48056 9.90601 6.62613 9.35806 6.83876C8.78334 7.05505 8.26263 7.39426 7.83234 7.83257C7.39426 8.26286 7.05505 8.78334 6.83899 9.35806C6.6259 9.90601 6.48033 10.532 6.43845 11.4489C6.39656 12.3674 6.38672 12.6608 6.38672 15C6.38672 17.3392 6.39656 17.6326 6.43867 18.5511Z"
+                  fill="#CACACA" />
+              </svg>
+            </a>
+          </li>
+          <li class="footer__social-item">
+            <a href="#" class="social__link footer__social-link">
+              <svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M15 0C6.74999 0 0 6.76205 0 15.0904C0 22.6205 5.48999 28.8705 12.66 30V19.4578H8.84999V15.0904H12.66V11.762C12.66 7.98193 14.895 5.90361 18.33 5.90361C19.965 5.90361 21.675 6.18976 21.675 6.18976V9.90964H19.785C17.925 9.90964 17.34 11.0693 17.34 12.259V15.0904H21.51L20.835 19.4578H17.34V30C20.8746 29.4395 24.0933 27.6288 26.4149 24.8947C28.7364 22.1606 30.008 18.6832 30 15.0904C30 6.76205 23.25 0 15 0Z"
+                  fill="#CACACA" />
+              </svg>
+
+            </a>
+          </li>
+          <li class="footer__social-item">
+            <a href="#" class="footer__social-link">
+              <svg width="30" height="30" viewbox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M15 0C6.71601 0 0 6.7157 0 15C0 23.2843 6.71601 30 15 30C23.284 30 30 23.2843 30 15C30 6.7157 23.284 0 15 0ZM22.6088 16.6223C23.3079 17.3052 24.0476 17.9478 24.6752 18.7013C24.9532 19.0346 25.2153 19.3792 25.4148 19.7669C25.6996 20.3196 25.4425 20.9257 24.9477 20.9586L21.8747 20.958C21.081 21.0236 20.4494 20.7035 19.9169 20.1609C19.4919 19.7285 19.0975 19.2666 18.6881 18.8194C18.5208 18.6359 18.3447 18.4631 18.1347 18.3272C17.7158 18.0546 17.3518 18.1381 17.1118 18.5758C16.8672 19.0211 16.8114 19.5146 16.788 20.0102C16.7546 20.7348 16.5361 20.9242 15.809 20.9583C14.2554 21.031 12.7814 20.7953 11.4114 20.0121C10.2028 19.3212 9.26731 18.3462 8.45217 17.2423C6.86486 15.0902 5.64921 12.7283 4.55693 10.2985C4.3111 9.7513 4.49095 9.45852 5.09463 9.44716C6.0976 9.42783 7.10056 9.43028 8.10353 9.44624C8.51171 9.45268 8.78179 9.68624 8.93862 10.0714C9.48061 11.4049 10.1451 12.6737 10.9777 13.8503C11.1996 14.1637 11.4261 14.4761 11.7486 14.6974C12.1047 14.9417 12.376 14.861 12.5438 14.4635C12.6513 14.2109 12.6976 13.9409 12.7209 13.6702C12.8007 12.743 12.8102 11.8162 12.6721 10.8927C12.5862 10.3148 12.2612 9.94158 11.6851 9.83233C11.3917 9.77678 11.4347 9.66813 11.5774 9.50056C11.8251 9.21084 12.0571 9.03161 12.5208 9.03161L15.9928 9.031C16.5401 9.13841 16.6628 9.38394 16.7371 9.93514L16.7402 13.7936C16.7337 14.0069 16.8473 14.6391 17.2303 14.7787C17.5372 14.88 17.7397 14.6339 17.9233 14.4396C18.7559 13.556 19.3492 12.5131 19.8804 11.4338C20.1149 10.9577 20.3171 10.4652 20.5136 9.97166C20.6596 9.60675 20.8868 9.42721 21.2986 9.43335L24.642 9.43734C24.7406 9.43734 24.8406 9.43826 24.9382 9.45514C25.5017 9.55151 25.6561 9.79396 25.4817 10.3436C25.2074 11.2073 24.6743 11.9266 24.1531 12.6479C23.5946 13.4201 22.9989 14.1652 22.4458 14.9408C21.9376 15.6497 21.9778 16.0066 22.6088 16.6223Z"
+                  fill="#CACACA" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

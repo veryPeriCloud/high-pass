@@ -1,0 +1,41 @@
+@mixin tablet {
+  @media(max-width: 1024px) {
+    @content
+  }
+}
+
+;
+
+@mixin mobile {
+  @media(max-width: 320px) {
+    @content
+  }
+}
+
+;
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+@mixin section-title {
+  margin: 0;
+  font-family: 'TT Firs Neue';
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 104%;
+
+  @media (max-width: 320.99px) {
+    font-size: 18px;
+    line-height: 23px;
+  }
+}

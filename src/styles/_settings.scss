@@ -1,0 +1,108 @@
+@import 'mixins';
+@import 'fonts';
+@import 'variables';
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+@include font-face('Roboto', './fonts/roboto-regular-webfont', 400);
+@include font-face('Roboto', './fonts/roboto-bold-webfont', 700);
+@include font-face('TT Firs Neue', './fonts/TTFirsNeue-Regular', 400);
+@include font-face('TT Firs Neue', './fonts/TTFirsNeue-Bold', 700);
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+img {
+  max-width: 100%;
+  // width: 100%;
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+.btn-reset {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1320px;
+  padding: 0 15px;
+  margin: 0 auto;
+
+  @media (max-width: 1024.99px) {
+    padding: 0 var(--offset-1024);
+  }
+
+  @media (max-width: 768.99px) {
+    padding: 0 var(--offset-768);
+  }
+
+  @media (max-width: 580.99px) {
+    padding: 0 var(--offset-mob);
+  }
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.btn {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-white);
+  background-color: var(--color-main);
+  border: 3px solid var(--color-main);
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+
+  &:hover {
+    border-color: var(--color-focus);
+    background-color: var(--color-focus);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-active);
+    background-color: var(--color-main);
+  }
+
+  &:active {
+    border-color: var(--color-active);
+    background-color: var(--color-active);
+  }
+
+  @media (max-width: 320.99px) {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+.for-mobile {
+  display: none;
+
+  @include mobile {
+    display: block;
+  }
+}
